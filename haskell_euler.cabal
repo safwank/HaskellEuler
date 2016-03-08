@@ -1,4 +1,4 @@
-name:              haskell_euler
+name:              haskell-euler
 version:           1.0
 Build-Type:        Simple
 cabal-version:     >= 1.2
