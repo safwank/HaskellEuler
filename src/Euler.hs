@@ -31,14 +31,16 @@ primeFactors 0 = []
 primeFactors 1 = []
 primeFactors x = filter (isPrime) $ factors x
 
-factors x = nub $ lows ++ (reverse $ map (div x) lows)
-            where lows = filter (divisible x) [1..truncate . sqrt $ fromIntegral x]
+factors x = let maxLow = truncate . sqrt $ fromIntegral x
+                lows = filter (divisible x) [1..maxLow]
+                highs = reverse $ map (div x) lows
+            in nub $ lows ++ highs
 
 divisible x y = x `mod` y == 0
 
 isPrime 0 = False
 isPrime 1 = False
 isPrime 2 = True
-isPrime x = not $ any (divisible x) [2..(x-1)]
+isPrime x = not $ any (divisible x) [2..x-1]
 
 test3 = TestCase (assertEqual "problem #3" problem3 6857)
