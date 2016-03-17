@@ -11,7 +11,7 @@ pythagoreanTriplet total a = case triplets of
                                   _  -> head triplets
                              where triplets = filter (isPythagoreanTriplet total)
                                               $ map (\b -> a : b : [calculateC a b])
-                                              $ [a+1..500]
+                                              $ [a+1..total]
 
 isPythagoreanTriplet total xs = sum xs == total && pythagorean xs
 
